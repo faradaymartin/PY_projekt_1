@@ -73,6 +73,7 @@ def analyze_text(text):
 try:
     vyber = int(input("Enter a number between 1 and 3 to select:"))
 except ValueError:
+    # Ukonceni programu v pripade zadani jine hodnoty než je cislice
     print("Invalid input, terminating the program..!")
     sys.exit()
 
