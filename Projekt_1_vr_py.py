@@ -1,3 +1,4 @@
+
 """
 projekt_1.ipynb: první projekt do Engeto Online Python Akademie
 
@@ -5,6 +6,9 @@ author: Martin Faraday
 email: faradaymartin@gmail.com
 discord: martinfaraday_19641
 """
+
+import sys
+import re
 
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
@@ -45,15 +49,18 @@ if login in uzivatel and password == uzivatel[login]:
     print(f'Welcome to the app, {login}\nWe have 3 texts to be analyzed.')
     print("-" * 43)
 else:
-    print("unregistered user, terminating the program..")
-
-
+    print("Unregistered user, terminating the program..!")
+    # Ukonceni programu
+    sys.exit() 
 
 def analyze_text(text):
+    # Odstranneni nezadouich znaku
+    text = re.sub(r'[^\w\s]', '', text) 
     words = text.split()
     word_count = len(words)
     capitalized_words = sum(1 for word in words if word[0].isupper())
-    uppercase_words = sum(1 for word in words if word.isupper())
+    # Upresnení vyhledavani slov obsahujici velko pismena
+    uppercase_words = sum(1 for word in words if re.fullmatch(r'[A-Z]+', word)) 
     lowercase_words = sum(1 for word in words if word.islower())
     numbers = [int(word) for word in words if word.isdigit()]
     number_count = len(numbers)
