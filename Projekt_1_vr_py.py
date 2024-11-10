@@ -1,12 +1,3 @@
-
-"""
-projekt_1.ipynb: první projekt do Engeto Online Python Akademie
-
-author: Martin Faraday
-email: faradaymartin@gmail.com
-discord: martinfaraday_19641
-"""
-
 import sys
 import re
 
@@ -79,8 +70,11 @@ def analyze_text(text):
         "Word length frequencies": length_freq
     }
 
-vyber = int(input("Enter a number between 1 and 3 to select:"))
-print("-" * 43)
+try:
+    vyber = int(input("Enter a number between 1 and 3 to select:"))
+except ValueError:
+    print("Invalid input, terminating the program..!")
+    sys.exit()
 
 if vyber in range(1, 4):
     vybrany_text = TEXTS[vyber - 1]
@@ -97,5 +91,7 @@ if vyber in range(1, 4):
             print(f'{key}: {value}')
 else:
     print("Invalid choice, choose a number between 1 and 3")
-
+    print("Unregistered user, terminating the program..!")
+    # Ukonceni programu
+    sys.exit()
 print("-" * 43)
